@@ -10,7 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Overview
-This is my homework. for help, see: <https://rmarkdown.rstudio.com/articles_intro.html>
+This is my homework. For Rmarkdown help, see: <https://rmarkdown.rstudio.com/articles_intro.html>
+
 
 
 ## R Markdown
