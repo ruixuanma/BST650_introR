@@ -210,12 +210,52 @@ mean(xNB_n1000)</code></pre>
 <p>The probability mass function for the Binomial Distribution is <span class="math display">\[
 Bin(x|n,p) := {n \choose x} p ^ x (1 - p) ^ {n - x},
 \]</span> where the population mean is <span class="math inline">\(np\)</span> and variance is <span class="math inline">\(np(1 - p)\)</span>. Repeat the above process I applied to the Negative Binomial distribution, but with a population mean of 6 and variance of 2. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances.</p>
+<pre class="r"><code>a5 &lt;- rbinom(5, 5, 2/3)
+mean(a5)</code></pre>
+<pre><code>## [1] 3.2</code></pre>
+<pre class="r"><code>var(a5)</code></pre>
+<pre><code>## [1] 0.7</code></pre>
+<pre class="r"><code>a15 &lt;- rbinom(15, 5, 2/3)
+mean(a15)</code></pre>
+<pre><code>## [1] 3.466667</code></pre>
+<pre class="r"><code>var(a15)</code></pre>
+<pre><code>## [1] 1.266667</code></pre>
+<pre class="r"><code>a25 &lt;- rbinom(25, 5, 2/3)
+mean(a25)</code></pre>
+<pre><code>## [1] 3.36</code></pre>
+<pre class="r"><code>var(a25)</code></pre>
+<pre><code>## [1] 1.156667</code></pre>
+<pre class="r"><code>a1000 &lt;- rbinom(1000, 5, 2/3)
+mean(a1000)</code></pre>
+<pre><code>## [1] 3.361</code></pre>
+<pre class="r"><code>var(a1000)</code></pre>
+<pre><code>## [1] 1.055735</code></pre>
 </div>
 <div id="poisson-distribution" class="section level3">
 <h3>Poisson Distribution</h3>
 <p>The probability mass function for the Poisson Distribution is <span class="math display">\[
 Pois(x|\lambda) := \frac{\lambda ^ x e ^ {\lambda}}{x!},
 \]</span> where the population mean and variance are both equal to <span class="math inline">\(\lambda\)</span>. Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 3 (and variance of 3). Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances.</p>
+<pre class="r"><code>b5 &lt;- rpois(5, 3)
+mean(b5)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>var(b5)</code></pre>
+<pre><code>## [1] 2.5</code></pre>
+<pre class="r"><code>b15 &lt;- rpois(15, 3)
+mean(b15)</code></pre>
+<pre><code>## [1] 2.866667</code></pre>
+<pre class="r"><code>var(b15)</code></pre>
+<pre><code>## [1] 2.266667</code></pre>
+<pre class="r"><code>b25 &lt;- rpois(25, 3)
+mean(b25)</code></pre>
+<pre><code>## [1] 3.12</code></pre>
+<pre class="r"><code>var(b25)</code></pre>
+<pre><code>## [1] 2.36</code></pre>
+<pre class="r"><code>b1000 &lt;- rpois(1000, 3)
+mean(b1000)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>var(b1000)</code></pre>
+<pre><code>## [1] 2.864865</code></pre>
 <p></br></p>
 <hr />
 <p></br></p>
@@ -229,6 +269,26 @@ Pois(x|\lambda) := \frac{\lambda ^ x e ^ {\lambda}}{x!},
 <p>The probability density function for the Normal Distribution is <span class="math display">\[
 N(x|\mu, \sigma) := \frac{1}{\sqrt{2 \pi \sigma ^ 2}} e ^ {-\left(\frac{(x - \mu) ^ 2}{2 \sigma ^ 2}\right)},
 \]</span> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma ^ 2\)</span>. Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 2 and variance of 5. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances.</p>
+<pre class="r"><code>c5 &lt;- rnorm(5, 2, sqrt(5))
+mean(c5)</code></pre>
+<pre><code>## [1] 1.332956</code></pre>
+<pre class="r"><code>var(c5)</code></pre>
+<pre><code>## [1] 5.643652</code></pre>
+<pre class="r"><code>c15 &lt;- rnorm(15, 2, sqrt(5))
+mean(c15)</code></pre>
+<pre><code>## [1] 1.979761</code></pre>
+<pre class="r"><code>var(c15)</code></pre>
+<pre><code>## [1] 4.158509</code></pre>
+<pre class="r"><code>c25 &lt;- rnorm(25, 2, sqrt(5))
+mean(c25)</code></pre>
+<pre><code>## [1] 2.240881</code></pre>
+<pre class="r"><code>var(c25)</code></pre>
+<pre><code>## [1] 4.719149</code></pre>
+<pre class="r"><code>c1000 &lt;- rnorm(1000, 2, sqrt(5))
+mean(c1000)</code></pre>
+<pre><code>## [1] 1.970625</code></pre>
+<pre class="r"><code>var(c1000)</code></pre>
+<pre><code>## [1] 4.773581</code></pre>
 </div>
 <div id="students-t-distribution" class="section level3">
 <h3>Student’s <span class="math inline">\(t\)</span> Distribution</h3>
@@ -237,12 +297,52 @@ t_{\nu}(x) := \frac{\Gamma\left(\frac{\nu + 1}{2}\right)}{\sqrt{\nu \pi} \Gamma\
 \]</span> with mean identically <span class="math inline">\(0\)</span> and variance <span class="math inline">\(\nu / (\nu - 2)\)</span>. This and other distributions make use of the <span class="math inline">\(\Gamma\)</span> function (read: “Gamma”); this function is defined as <span class="math display">\[
 \Gamma(n) := (n - 1)!,\ n \in \mathbb{N},
 \]</span> where <span class="math inline">\(\mathbb{N}\)</span> is the set of counting numbers and <span class="math inline">\(!\)</span> is the <a href="https://en.wikipedia.org/wiki/Factorial">factorial operator</a> (the <span class="math inline">\(\Gamma\)</span> function is technically defined for all complex numbers with a positive real component, but that’s a conversation for your mathematical statistics class). Repeat the process I applied to the Negative Binomial distribution, but with a population variance of 2. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances.</p>
+<pre class="r"><code>d5 &lt;- rt(5, 4, 0)
+mean(d5)</code></pre>
+<pre><code>## [1] -0.3134468</code></pre>
+<pre class="r"><code>var(d5)</code></pre>
+<pre><code>## [1] 1.192782</code></pre>
+<pre class="r"><code>d15 &lt;- rt(15, 4, 0)
+mean(d15)</code></pre>
+<pre><code>## [1] -0.3558403</code></pre>
+<pre class="r"><code>var(d15)</code></pre>
+<pre><code>## [1] 2.849987</code></pre>
+<pre class="r"><code>d25 &lt;- rt(25, 4, 0)
+mean(d25)</code></pre>
+<pre><code>## [1] -0.2126405</code></pre>
+<pre class="r"><code>var(d25)</code></pre>
+<pre><code>## [1] 1.341033</code></pre>
+<pre class="r"><code>d1000 &lt;- rt(1000, 4, 0)
+mean(d1000)</code></pre>
+<pre><code>## [1] -0.02069345</code></pre>
+<pre class="r"><code>var(d1000)</code></pre>
+<pre><code>## [1] 2.325849</code></pre>
 </div>
 <div id="chi-2-distribution" class="section level3">
 <h3><span class="math inline">\(\chi ^ 2\)</span> Distribution</h3>
 <p>The probability density function for the <span class="math inline">\(\chi ^ 2\)</span> Distribution (also typeset as the Chi-Squared Distribution) is <span class="math display">\[
 \chi ^ 2 _{\nu}(x) := \frac{2 ^ {-\frac{\nu}{2}}}{\Gamma\left(\frac{\nu}{2}\right)} e ^ {-\frac{x}{2}} x ^ {\frac{\nu}{2} - 1},
 \]</span> with mean <span class="math inline">\(\nu\)</span> and variance <span class="math inline">\(2 \nu\)</span>. Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 2 (and thus a variance of 4). Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances.</p>
+<pre class="r"><code>e5 &lt;- rchisq(5, 2, 0)
+mean(e5)</code></pre>
+<pre><code>## [1] 2.081086</code></pre>
+<pre class="r"><code>var(e5)</code></pre>
+<pre><code>## [1] 4.348346</code></pre>
+<pre class="r"><code>e15 &lt;- rchisq(15, 2, 0)
+mean(e15)</code></pre>
+<pre><code>## [1] 1.746623</code></pre>
+<pre class="r"><code>var(e15)</code></pre>
+<pre><code>## [1] 2.075622</code></pre>
+<pre class="r"><code>e25 &lt;- rchisq(25, 2, 0)
+mean(e25)</code></pre>
+<pre><code>## [1] 1.664196</code></pre>
+<pre class="r"><code>var(e25)</code></pre>
+<pre><code>## [1] 2.979948</code></pre>
+<pre class="r"><code>e1000 &lt;- rchisq(1000, 2, 0)
+mean(e1000)</code></pre>
+<pre><code>## [1] 2.071592</code></pre>
+<pre class="r"><code>var(e1000)</code></pre>
+<pre><code>## [1] 4.560638</code></pre>
 </div>
 <div id="f-distribution" class="section level3">
 <h3><span class="math inline">\(F\)</span>-Distribution</h3>
@@ -251,6 +351,26 @@ F(x|n,m) := \frac{\Gamma\left(\frac{n + m}{2}\right) \sqrt{n ^ n m ^ m}}{\Gamma\
 \]</span> with mean <span class="math inline">\(m / (m - 2)\)</span> and variance <span class="math display">\[
 \frac{2m ^ 2 (n + m - 2)}{n (m - 2) ^ 2 (m - 4)},\ m &gt; 4.
 \]</span> Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 1.2 and variance of 0.4. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances.</p>
+<pre class="r"><code>f5 &lt;- rf(5, 90, 12, 0)
+mean(f5)</code></pre>
+<pre><code>## [1] 1.350532</code></pre>
+<pre class="r"><code>var(f5)</code></pre>
+<pre><code>## [1] 0.3128886</code></pre>
+<pre class="r"><code>f15 &lt;- rf(15, 90, 12, 0)
+mean(f15)</code></pre>
+<pre><code>## [1] 1.25496</code></pre>
+<pre class="r"><code>var(f15)</code></pre>
+<pre><code>## [1] 1.238435</code></pre>
+<pre class="r"><code>f25 &lt;- rf(25, 90, 12, 0)
+mean(f25)</code></pre>
+<pre><code>## [1] 1.281844</code></pre>
+<pre class="r"><code>var(f25)</code></pre>
+<pre><code>## [1] 0.2962873</code></pre>
+<pre class="r"><code>f1000 &lt;- rf(1000, 90, 12, 0)
+mean(f1000)</code></pre>
+<pre><code>## [1] 1.186896</code></pre>
+<pre class="r"><code>var(f1000)</code></pre>
+<pre><code>## [1] 0.396936</code></pre>
 </div>
 </div>
 

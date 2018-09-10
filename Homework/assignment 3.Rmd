@@ -98,6 +98,24 @@ The probability mass function for the Binomial Distribution is
 Bin(x|n,p) := {n \choose x} p ^ x (1 - p) ^ {n - x},
 \]
 where the population mean is $np$ and variance is $np(1 - p)$. Repeat the above process I applied to the Negative Binomial distribution, but with a population mean of 6 and variance of 2. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances. 
+```{r}
+a5 <- rbinom(5, 5, 2/3)
+mean(a5)
+var(a5)
+
+a15 <- rbinom(15, 5, 2/3)
+mean(a15)
+var(a15)
+
+a25 <- rbinom(25, 5, 2/3)
+mean(a25)
+var(a25)
+
+a1000 <- rbinom(1000, 5, 2/3)
+mean(a1000)
+var(a1000)
+
+```
 
 
 ### Poisson Distribution
@@ -106,7 +124,23 @@ The probability mass function for the Poisson Distribution is
 Pois(x|\lambda) := \frac{\lambda ^ x e ^ {\lambda}}{x!},
 \]
 where the population mean and variance are both equal to $\lambda$. Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 3 (and variance of 3). Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances. 
+```{r}
+b5 <- rpois(5, 3)
+mean(b5)
+var(b5)
 
+b15 <- rpois(15, 3)
+mean(b15)
+var(b15)
+
+b25 <- rpois(25, 3)
+mean(b25)
+var(b25)
+
+b1000 <- rpois(1000, 3)
+mean(b1000)
+var(b1000)
+```
 
 </br>
 
@@ -124,6 +158,24 @@ The probability density function for the Normal Distribution is
 N(x|\mu, \sigma) := \frac{1}{\sqrt{2 \pi \sigma ^ 2}} e ^ {-\left(\frac{(x - \mu) ^ 2}{2 \sigma ^ 2}\right)},
 \]
 with mean $\mu$ and variance $\sigma ^ 2$. Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 2 and variance of 5. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances. 
+```{r}
+c5 <- rnorm(5, 2, sqrt(5))
+mean(c5)
+var(c5)
+
+c15 <- rnorm(15, 2, sqrt(5))
+mean(c15)
+var(c15)
+
+c25 <- rnorm(25, 2, sqrt(5))
+mean(c25)
+var(c25)
+
+c1000 <- rnorm(1000, 2, sqrt(5))
+mean(c1000)
+var(c1000)
+
+```
 
 
 ### Student's $t$ Distribution
@@ -136,6 +188,25 @@ with mean identically $0$ and variance $\nu / (\nu - 2)$. This and other distrib
 \Gamma(n) := (n - 1)!,\ n \in \mathbb{N},
 \]
 where $\mathbb{N}$ is the set of counting numbers and $!$ is the [factorial operator](https://en.wikipedia.org/wiki/Factorial) (the $\Gamma$ function is technically defined for all complex numbers with a positive real component, but that's a conversation for your mathematical statistics class). Repeat the process I applied to the Negative Binomial distribution, but with a population variance of 2. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances. 
+```{r}
+d5 <- rt(5, 4, 0)
+mean(d5)
+var(d5)
+
+d15 <- rt(15, 4, 0)
+mean(d15)
+var(d15)
+
+d25 <- rt(25, 4, 0)
+mean(d25)
+var(d25)
+
+d1000 <- rt(1000, 4, 0)
+mean(d1000)
+var(d1000)
+
+
+```
 
 
 ### $\chi ^ 2$ Distribution
@@ -144,6 +215,24 @@ The probability density function for the $\chi ^ 2$ Distribution (also typeset a
 \chi ^ 2 _{\nu}(x) := \frac{2 ^ {-\frac{\nu}{2}}}{\Gamma\left(\frac{\nu}{2}\right)} e ^ {-\frac{x}{2}} x ^ {\frac{\nu}{2} - 1},
 \]
 with mean $\nu$ and variance $2 \nu$. Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 2 (and thus a variance of 4). Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances. 
+```{r}
+e5 <- rchisq(5, 2, 0)
+mean(e5)
+var(e5)
+
+e15 <- rchisq(15, 2, 0)
+mean(e15)
+var(e15)
+
+e25 <- rchisq(25, 2, 0)
+mean(e25)
+var(e25)
+
+e1000 <- rchisq(1000, 2, 0)
+mean(e1000)
+var(e1000)
+```
+
 
 
 ### $F$-Distribution
@@ -156,3 +245,20 @@ with mean $m / (m - 2)$ and variance
 \frac{2m ^ 2 (n + m - 2)}{n (m - 2) ^ 2 (m - 4)},\ m > 4.
 \]
 Repeat the process I applied to the Negative Binomial distribution, but with a population mean of 1.2 and variance of 0.4. Generate samples of sizes 5, 15, 25, and 1000 from such a distribution, and calculate their sample means and variances. 
+```{r}
+f5 <- rf(5, 90, 12, 0)
+mean(f5)
+var(f5)
+
+f15 <- rf(15, 90, 12, 0)
+mean(f15)
+var(f15)
+
+f25 <- rf(25, 90, 12, 0)
+mean(f25)
+var(f25)
+
+f1000 <- rf(1000, 90, 12, 0)
+mean(f1000)
+var(f1000)
+```
