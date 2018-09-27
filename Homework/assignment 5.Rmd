@@ -156,3 +156,193 @@ n_ls
 
 ```
 5. Repeat this for the rest of the distributions we inspected in Assignment 4. Did you reject the null hypothesis for any of the distributions? If so, which ones. If so, why do you think you rejected the null hypothesis for these distributions? If not, why not?
+
+
+# Binomial Distribution
+
+```{r}
+binom_ls <- list(
+  dist   = "Binomial Distribution",
+  params = c(mean = 6, var = 2),
+  sample = rbinom(9, 5, 2/3)
+)
+hist(binom_ls$sample)
+
+mean(binom_ls$sample)
+var(binom_ls$sample)
+
+cv_binom <- qt(0.975, 8)
+
+ttest_binom <- t.test(
+  binom_ls$sample,
+  alternative = "two.sided",
+  mu = 6
+)
+
+names(ttest_binom)
+
+abs(ttest_binom$statistic) > cv_binom
+ttest_binom$p.value < 0.05
+
+binom_ls$pVal <- ttest_binom$p.value
+binom_ls$teststat <- ttest_binom$statistic
+binom_ls$cv <- cv_binom
+binom_ls$decision <- "Reject the Hypothesis that the True Mean Equals 6"
+```
+
+# Poisson distribution
+```{r}
+pois_ls <- list(
+  dist   = "Poisson Distribution",
+  params = c(lambda = 3),
+  sample = rpois(n = 15, lambda = 3)
+)
+  
+hist(pois_ls$sample)
+
+mean(pois_ls$sample)
+var(pois_ls$sample)
+
+cv_pois <- qt(0.975, 14)
+
+ttest_pois <- t.test(
+  pois_ls$sample,
+  alternative = "two.sided",
+  mu = 3
+)
+
+names(ttest_pois)
+
+abs(ttest_pois$statistic) > cv_pois
+ttest_pois$p.value < 0.05
+
+pois_ls$pVal <- ttest_pois$p.value
+pois_ls$teststat <- ttest_pois$statistic
+pois_ls$cv <- cv_pois
+pois_ls$decision <- "Fail to reject the Hypothesis that the True Mean Equals 3"
+```
+
+
+# Negative Binomial Distribution
+```{r}
+nbinom_ls <- list(
+  dist   = "Negative Binomial Distribution",
+  params = c(size = 5, prob = 0.5),
+  sample = rbinom(15, 5, 0.5)
+)
+hist(nbinom_ls$sample)
+
+mean(nbinom_ls$sample)
+var(nbinom_ls$sample)
+
+cv_nbinom <- qt(0.975, 14)
+
+ttest_nbinom <- t.test(
+  nbinom_ls$sample,
+  alternative = "two.sided",
+  mu = 5
+)
+
+names(ttest_nbinom)
+
+abs(ttest_nbinom$statistic) > cv_nbinom
+ttest_nbinom$p.value < 0.05
+
+nbinom_ls$pVal <- ttest_nbinom$p.value
+nbinom_ls$teststat <- ttest_nbinom$statistic
+nbinom_ls$cv <- cv_nbinom
+nbinom_ls$decision <- "Reject the Hypothesis that the True Mean Equals 5"
+```
+
+# Student t Distribution
+```{r}
+t_ls <- list(
+  dist   = "Student t Distribution",
+  params = c(nu = 4),
+  sample = rt(15, 4, 0)
+)
+hist(t_ls$sample)
+
+mean(t_ls$sample)
+var(t_ls$sample)
+
+cv_t <- qt(0.975, 14)
+
+ttest_t <- t.test(
+  t_ls$sample,
+  alternative = "two.sided",
+  mu = 0
+)
+
+names(ttest_t)
+
+abs(ttest_t$statistic) > cv_t
+ttest_t$p.value < 0.05
+
+t_ls$pVal <- ttest_t$p.value
+t_ls$teststat <- ttest_t$statistic
+t_ls$cv <- cv_t
+t_ls$decision <- "Fail to reject the Hypothesis that the True Mean Equals 0"
+```
+
+# Chi-Squared Distribution
+```{r}
+Chisq_ls <- list(
+  dist   = "Chi-Squared Distribution",
+  params = c(nu = 2),
+  sample = rchisq(15, 2, 0)
+)
+hist(Chisq_ls$sample)
+
+mean(Chisq_ls$sample)
+var(Chisq_ls$sample)
+
+cv_Chisq <- qt(0.975, 14)
+
+ttest_Chisq <- t.test(
+  Chisq_ls$sample,
+  alternative = "two.sided",
+  mu = 2
+)
+
+names(ttest_Chisq)
+
+abs(ttest_Chisq$statistic) > cv_Chisq
+ttest_Chisq$p.value < 0.05
+
+Chisq_ls$pVal <- ttest_Chisq$p.value
+Chisq_ls$teststat <- ttest_Chisq$statistic
+Chisq_ls$cv <- cv_Chisq
+Chisq_ls$decision <- "Fail to reject the Hypothesis that the True Mean Equals 2"
+```
+
+# F Distribution
+```{r}
+f_ls <- list(
+  dist   = "F Distribution",
+  params = c(n = 90, m = 12),
+  sample = rf(15, 90, 12, 0)
+)
+hist(f_ls$sample)
+
+mean(f_ls$sample)
+var(f_ls$sample)
+
+cv_f<- qt(0.975, 14)
+
+ttest_f <- t.test(
+  f_ls$sample,
+  alternative = "two.sided",
+  mu = 1.2
+)
+
+names(ttest_f)
+
+abs(ttest_f$statistic) > cv_f
+ttest_f$p.value < 0.05
+
+f_ls$pVal <- ttest_f$p.value
+f_ls$teststat <- ttest_f$statistic
+f_ls$cv <- cv_f
+f_ls$decision <- "Fail to reject the Hypothesis that the True Mean Equals 1.2"
+```
