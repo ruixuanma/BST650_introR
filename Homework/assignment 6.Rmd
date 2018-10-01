@@ -1,0 +1,103 @@
+---
+title: "Assignment 6"
+author: "Ruixuan Ma"
+date: "9/27/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Assignment 5: Due Sunday, 30 September at 23:59PM
+*For help with Rmarkdown for reports, see this [white paper](http://www.stat.cmu.edu/~cshalizi/rmarkdown/#math-in-r-markdown) from Carnegie Mellon University's Department of Statistics and Data Science.*
+
+### Part 1
+Finish the work you have left over from Assignment 4. Email me when you finish, so I can look at it. Please finish this by Tuesday evening.
+
+### Part 2
+Read [this article](https://www.r-bloggers.com/5-ways-to-subset-a-data-frame-in-r/) and execute the code in it. For the last example in this article (using the `dplyr` package), use the `tidyverse` package you just installed instead. The `filter()` and `select()` functions are the same. Include the code from this article and your output as the first section of your markdown report.
+### import education expenditure data set and assign column names
+```{r}
+education <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/education.csv", stringsAsFactors = FALSE)
+colnames(education) <- c("X","State","Region","Urban.Population","Per.Capita.Income","Minor.Population","Education.Expenditures")
+View(education)
+
+ed_exp1 <- education[c(10:21),c(2,6:7)]
+
+ed_exp2 <- education[-c(1:9,22:50),-c(1,3:5)]
+
+ed_exp3 <- education[which(education$Region == 2),names(education) %in% c("State","Minor.Population","Education.Expenditures")]
+
+ed_exp4 <- subset(education, Region == 2, select = c("State","Minor.Population","Education.Expenditures"))
+
+install.packages("tidyverse")
+library(tidyverse)
+ed_exp5 <- select(filter(education, Region == 2),c(State,Minor.Population:Education.Expenditures))
+```
+
+
+### Part 3
+1. Create the `myClass` data frame we covered in class. When you create the data frame, make sure that your character **strings** are not changed to **factors** (look at `?data.frame` for the `stringsAsFactors` argument; also look at how the article does it). Include a row in the data frame for me, you, and your classmates. Here are the features to measure:
+    a. last name
+    b. first name
+    c. number of cups of coffee or tea per day, and
+    d. current neighbourhood
+```{r}
+myClass <- data.frame(
+   Surname = c("Odom", "Ma", "Dyatchenko", "Gmunder"),
+   GivenName = c("Gabriel", "Ruixuan", "Nina", "Kristin"),
+   CupsCoffeeTea = c(0, 2, 3, 0),
+   neighbourhood = c("Pembroke Pines", "Modera Riverhouse", "Miami Beach", "Brickell")
+)
+```
+2. For each of the five data-frame subsetting methods in the article above, subset
+    i. Your row
+```{r}
+myRow1 <- myClass[2,c(1:4)]
+myRow2 <- myClass[-c(1,3:4),c(1:4)]
+myRow3 <- myClass[which(myClass$Surname == "Ma"),names(myClass) %in% c("Surname","GivenName","CupsCoffeeTea","neighbourhood")]
+myRow4 <- subset(myClass, Surname == "Ma", select = c("Surname","GivenName","CupsCoffeeTea","neighbourhood"))
+myRow5 <-select(filter(myClass, Surname == "Ma"),c(Surname:neighbourhood))
+```
+    ii. the column of neighbourhoods
+```{r}
+col_nbh1 <- myClass[c(1:4),4]
+col_nbh2 <- myClass[c(1:4),-c(1:3)]
+col_nbh3 <- myClass[names(myClass) %in% "neighbourhood"]
+col_nbh4 <- subset(myClass, select = "neighbourhood")
+col_nbh5 <- select(myClass, neighbourhood)
+```
+    iii. your current neighbourhood
+```{r}
+my_nbh1 <- myClass[2,4]
+my_nbh2 <- myClass[-c(1,3:4),-c(1:3)]
+my_nbh3 <- myClass[which(myClass$Surname == "Ma"),names(myClass) %in% c("neighbourhood")]
+my_nbh4 <- subset(myClass, Surname== "Ma", select = "neighbourhood")
+my_nbh5 <- select(filter(myClass, Surname == "Ma"), "neighbourhood")
+```
+    iv. your AND my current neighbourhood, as a data frame
+```{r}
+yandm_nbh1 <- myClass[c(1:2),4]
+yandm_nbh2 <- myClass[-c(3:4),-c(1:3)]
+yandm_nbh3 <- myClass[which(myClass$Surname == c("Odom","Ma")),names(myClass) %in% c("neighbourhood")]
+yandm_nbh4 <- subset(myClass, Surname== c("Odom","Ma"), select = "neighbourhood")
+yandm_nbh5 <- select(filter(myClass, Surname == c("Odom","Ma")),c(neighbourhood))
+```
+    v. the rows with people who drink coffee or tea
+```{r}
+drink1 <- myClass[c(2:3),c(1:4)]
+drink2 <- myClass[-c(1,4),c(1:4)]
+drink3 <- myClass[which(myClass$Surname == c("Dyatchenko","Ma")),names(myClass) %in% c("Surname","GivenName","CupsCoffeeTea","neighbourhood")]
+drink4 <- subset(myClass, Surname== c("Dyatchenko","Ma"), select = c("Surname","GivenName","CupsCoffeeTea","neighbourhood"))
+drink5 <- select(filter(myClass, Surname == c("Dyatchenko","Ma")),c(Surname:neighbourhood))
+```
+    vi. the neighbourhoods of people who *do not* drink coffee or tea
+```{r}
+NoDrink1 <- myClass[c(1,4),4]
+NoDrink2 <- myClass[-c(2:3),-c(1:3)]
+NoDrink3 <- myClass[which(myClass$Surname == c("Odom","Gmunder")),names(myClass) %in% c("neighbourhood")]
+NoDrink4 <- subset(myClass, Surname== c("Odom","Gmunder"), select = "neighbourhood")
+NoDrink5 <- select(filter(myClass, Surname == c("Odom","Gmunder")),c(neighbourhood))
+
+```
